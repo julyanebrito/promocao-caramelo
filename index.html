@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PromoCÃO Caramelo</title>
+  <meta name="description" content="O Caramelo é o amigo que garimpa oferta e manda no WhatsApp." />
+  <meta name="theme-color" content="#FF9A1A" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #2a160c;
+      --soft: rgba(42, 22, 12, 0.72);
+      --hot: #c2410c;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 16px 40px;
+      overflow-x: hidden;
+      color: var(--ink);
+      font-family: "Outfit", system-ui, sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, #fff6d4 0, transparent 42%),
+        radial-gradient(circle at 100% 100%, rgba(180, 50, 0, 0.28), transparent 46%),
+        linear-gradient(165deg, #ffe08a 0%, #ffb020 42%, #f07818 100%);
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1.2px);
+      background-size: 18px 18px;
+      mask-image: linear-gradient(180deg, #000, transparent 80%);
+    }
+    .poster {
+      position: relative;
+      width: min(440px, calc(100vw - 32px));
+      min-width: 0;
+      background: #fffaf3;
+      border-radius: 32px;
+      box-shadow: 0 28px 60px rgba(120, 40, 0, 0.22);
+    }
+    .stage {
+      position: relative;
+      padding: 22px 20px 8px;
+      border-radius: 32px 32px 0 0;
+      background:
+        radial-gradient(circle at 50% 120%, #fff1c4, transparent 46%),
+        linear-gradient(180deg, #ffb01a, #ff8a1a);
+      text-align: center;
+    }
+    .eyebrow {
+      margin: 0;
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 250, 243, 0.92);
+      color: var(--hot);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .dog {
+      width: 168px;
+      max-width: 46%;
+      height: auto;
+      display: block;
+      margin: 8px auto 0;
+    }
+    .sheet {
+      padding: 8px 22px 26px;
+      text-align: center;
+    }
+    .brand {
+      margin: 0 0 8px;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      letter-spacing: -0.04em;
+    }
+    .brand span { color: var(--hot); }
+    h1 {
+      margin: 0;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.05rem, 8vw, 2.85rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+      overflow-wrap: break-word;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--hot);
+    }
+    .sub {
+      margin: 12px auto 0;
+      max-width: 32ch;
+      color: var(--soft);
+      font-size: 1.02rem;
+      line-height: 1.45;
+    }
+    .quote {
+      margin: 16px 0 0;
+      padding: 12px 14px;
+      border: 0;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: inset 4px 0 0 var(--hot);
+      text-align: left;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      line-height: 1.3;
+    }
+    .quote span {
+      display: block;
+      margin-top: 4px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--hot);
+    }
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #3ddc78, #1ebe5d);
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      box-shadow: 0 8px 0 #129446;
+    }
+    .cta:hover { transform: translateY(1px); }
+    .cta:focus-visible { outline: 3px solid #14532d; outline-offset: 3px; }
+    .cta svg {
+      width: 26px;
+      height: 26px;
+      flex: none;
+      display: block;
+    }
+    .kicker {
+      margin: 22px 0 10px;
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--hot);
+    }
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      text-align: left;
+    }
+    .list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 12px;
+      border-radius: 16px;
+      background: #fff;
+      font-weight: 650;
+      font-size: 0.98rem;
+    }
+    .list strong { display: block; font-weight: 700; }
+    .list small {
+      display: block;
+      margin-top: 2px;
+      color: var(--soft);
+      font-weight: 500;
+      font-size: 0.82rem;
+    }
+    .mark {
+      width: 38px;
+      height: 38px;
+      flex: none;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: #fff3df;
+      font-size: 1.15rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="poster">
+    <div class="stage">
+      <p class="eyebrow">Grupo no WhatsApp</p>
+      <img class="dog" src="mascote.png" alt="Caramelo, mascote do PromoCÃO, apontando para um celular com carrinho de compras" />
+    </div>
+    <div class="sheet">
+      <p class="brand">Promo<span>CÃO</span> Caramelo</p>
+      <h1>O Caramelo fareja.<br><em>Você economiza.</em></h1>
+      <p class="sub">De tudo um pouco. De desconto, muito.</p>
+      <blockquote class="quote">
+        Promoção boa tem cheiro. O Caramelo sente de longe.
+        <span>Seu radar de ofertas ganhou quatro patas.</span>
+      </blockquote>
+      <a class="cta" href="https://chat.whatsapp.com/LgC8GDYcdIe4YzLoIdmE6Q?mode=gi_t">
+        <svg viewBox="0 0 32 32" aria-hidden="true">
+          <path fill="currentColor" d="M16 4.2A11.7 11.7 0 0 0 4.4 15.8c0 2.06.54 4.08 1.57 5.85L4.3 27.8l6.3-1.65a11.8 11.8 0 0 0 5.4 1.3A11.7 11.7 0 0 0 16 4.2zm6.72 16.55c-.28.78-1.62 1.48-2.24 1.58-.56.08-1.28.12-2.06-.12-.48-.16-1.08-.36-1.86-.7-3.28-1.42-5.42-4.72-5.58-4.94-.16-.22-1.34-1.78-1.34-3.4 0-1.6.84-2.4 1.14-2.72.28-.32.64-.4.86-.4h.62c.2 0 .46-.06.72.56.28.64.92 2.24 1 2.4.08.16.12.36.02.56-.1.22-.16.36-.32.56-.16.18-.32.42-.46.58-.16.16-.32.32-.14.62.18.32.78 1.3 1.68 2.1 1.16 1.04 2.14 1.36 2.46 1.52.32.16.5.12.68-.08.18-.22.76-.88.96-1.18.2-.3.4-.26.68-.16.28.1 1.76.82 2.06.98.3.14.5.22.56.36.08.12.08.76-.2 1.54z"/>
+        </svg>
+        Entrar no grupo
+      </a>
+      <p class="kicker">Do útil ao “nem sabia que precisava”</p>
+      <ul class="list">
+        <li><span class="mark" aria-hidden="true">📱</span><div><strong>Eletrônicos</strong><small>Celular, fone, TV e o que despencar</small></div></li>
+        <li><span class="mark" aria-hidden="true">👗</span><div><strong>Moda e beleza</strong><small>Roupa, tênis e cuidado pessoal</small></div></li>
+        <li><span class="mark" aria-hidden="true">🏠</span><div><strong>Casa e mercado</strong><small>O que faz falta no dia a dia</small></div></li>
+        <li><span class="mark" aria-hidden="true">🎟️</span><div><strong>Cupom do dia</strong><small>Desconto que vale usar agora</small></div></li>
+      </ul>
+    </div>
+  </main>
+</body>
+</html>
