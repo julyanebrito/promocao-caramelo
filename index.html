@@ -222,14 +222,6 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0.55; }
     }
-    @keyframes quicar {
-      0%, 100% { transform: scale(1); }
-      30% { transform: scale(1.12); }
-      45% { transform: scale(0.95); }
-      60% { transform: scale(1.04); }
-      75% { transform: scale(1); }
-    }
-    .dog { animation: quicar 1.8s ease-in-out infinite; transform-origin: 50% 85%; }
     .cta { animation: balanco 1.45s ease-in-out infinite, onda 1.45s ease-out infinite; }
     .cta:hover { animation-play-state: paused; }
     .vagas {
@@ -320,9 +312,30 @@
     .oferta s { display: block; margin-top: 4px; color: var(--soft); font-size: 0.75rem; }
     .oferta strong { color: #15803d; font-size: 1.05rem; }
     .nota { margin: 10px 0 0; color: var(--soft); font-size: 0.75rem; }
-    .cta.segundo { margin-top: 16px; }
+    .oferta img { height: auto; }
+    .fixo { display: none; }
+    @media (max-width: 640px) {
+      .fixo {
+        display: block;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        padding: 10px 16px calc(14px + env(safe-area-inset-bottom));
+        background: rgba(255, 250, 243, 0.96);
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -6px 20px rgba(120, 40, 0, 0.15);
+        transform: translateY(120%);
+        transition: transform 0.25s ease;
+      }
+      .fixo.visivel { transform: none; }
+      .fixo .cta { margin: 0 auto; max-width: 440px; animation: onda 1.45s ease-out infinite; }
+      body { padding-bottom: 110px; }
+    }
     @media (prefers-reduced-motion: reduce) {
-      .dog, .cta, .vagas, .list li, .oferta { animation: none; opacity: 1; }
+      .dog, .cta, .vagas, .list li, .oferta, .fixo .cta { animation: none; opacity: 1; }
+      .fixo { transition: none; }
     }
   </style>
 </head>
@@ -330,20 +343,31 @@
   <main class="poster">
     <div class="stage">
       <p class="eyebrow">Grupo no WhatsApp</p>
-      <img class="dog" src="mascote.png" alt="Caramelo, mascote do PromoCÃO, apontando para um celular com carrinho de compras" />
-    </div>
+      <img class="dog" src="img/mascote.webp" width="236" height="240" fetchpriority="high" alt="Caramelo, mascote do PromoCÃO, apontando para um celular com carrinho de compras" />    </div>
     <div class="sheet">
       <p class="brand">Promo<span>CÃO</span> Caramelo</p>
-      <h1><span>Achadinhos da Shopee.</span><em>Desconto de verdade.</em></h1>
+      <h1><span>Nunca mais pague</span><em>caro na Shopee!</em></h1>
       <p class="destaque">🔥 Ofertas com até <b>80% OFF</b></p>
-      <p class="sub">Casa, beleza e muito mais, todo dia no seu WhatsApp.</p>
-      <a class="cta" href="https://chat.whatsapp.com/LgC8GDYcdIe4YzLoIdmE6Q?mode=gi_t">
+      <p class="sub">Receba achadinhos, cupons e ofertas selecionadas todos os dias, direto no seu WhatsApp.</p>
+      <a class="cta" id="cta-principal" data-cta="topo" href="https://chat.whatsapp.com/LgC8GDYcdIe4YzLoIdmE6Q?mode=gi_t">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path fill="currentColor" d="M16 4.2A11.7 11.7 0 0 0 4.4 15.8c0 2.06.54 4.08 1.57 5.85L4.3 27.8l6.3-1.65a11.8 11.8 0 0 0 5.4 1.3A11.7 11.7 0 0 0 16 4.2zm6.72 16.55c-.28.78-1.62 1.48-2.24 1.58-.56.08-1.28.12-2.06-.12-.48-.16-1.08-.36-1.86-.7-3.28-1.42-5.42-4.72-5.58-4.94-.16-.22-1.34-1.78-1.34-3.4 0-1.6.84-2.4 1.14-2.72.28-.32.64-.4.86-.4h.62c.2 0 .46-.06.72.56.28.64.92 2.24 1 2.4.08.16.12.36.02.56-.1.22-.16.36-.32.56-.16.18-.32.42-.46.58-.16.16-.32.32-.14.62.18.32.78 1.3 1.68 2.1 1.16 1.04 2.14 1.36 2.46 1.52.32.16.5.12.68-.08.18-.22.76-.88.96-1.18.2-.3.4-.26.68-.16.28.1 1.76.82 2.06.98.3.14.5.22.56.36.08.12.08.76-.2 1.54z"/>
         </svg>
-        Entrar no grupo
+        Entrar no grupo grátis
       </a>
-      <p class="vagas">🚨 Grupo gratuito · entre antes de lotar</p>
+      <p class="vagas">✅ 100% gratuito · Sem compromisso</p>
+      <p class="kicker">Olha os preços que já passaram no grupo! 😱</p>
+      <div class="vitrine">
+        <div class="oferta"><span class="off">-88%</span><img src="img/escova.webp" width="360" height="360" alt="Escova elétrica de limpeza recarregável" loading="lazy" decoding="async" /><div><p>Escova elétrica de limpeza recarregável</p><s>R$ 99,00</s><strong>R$ 11,88</strong></div></div>
+        <div class="oferta"><span class="off">-84%</span><img src="img/petisqueira.webp" width="360" height="360" alt="Kit 10 petisqueiras barquinha" loading="lazy" decoding="async" /><div><p>Kit 10 petisqueiras barquinha</p><s>R$ 118,37</s><strong>R$ 18,94</strong></div></div>
+        <div class="oferta"><span class="off">-75%</span><img src="img/porta-ovos.webp" width="360" height="360" alt="Porta ovos rolante 4 andares" loading="lazy" decoding="async" /><div><p>Porta ovos rolante 4 andares</p><s>R$ 59,64</s><strong>R$ 14,91</strong></div></div>
+        <div class="oferta"><span class="off">-75%</span><img src="img/caixa-som.webp" width="360" height="360" alt="Caixa de som Bluetooth com LED" loading="lazy" decoding="async" /><div><p>Caixa de som Bluetooth com LED</p><s>R$ 199,52</s><strong>R$ 49,88</strong></div></div>
+        <div class="oferta"><span class="off">-75%</span><img src="img/carregador.webp" width="360" height="360" alt="Carregador veicular retrátil 4 em 1" loading="lazy" decoding="async" /><div><p>Carregador veicular retrátil 4 em 1</p><s>R$ 195,44</s><strong>R$ 48,86</strong></div></div>
+        <div class="oferta"><span class="off">-72%</span><img src="img/chinelo.webp" width="360" height="360" alt="Chinelo nuvem ortopédico" loading="lazy" decoding="async" /><div><p>Chinelo nuvem ortopédico</p><s>R$ 71,07</s><strong>R$ 19,90</strong></div></div>
+        <div class="oferta"><span class="off">-70%</span><img src="img/varal.webp" width="360" height="360" alt="Varal de parede retrátil" loading="lazy" decoding="async" /><div><p>Varal de parede retrátil</p><s>R$ 49,67</s><strong>R$ 14,90</strong></div></div>
+        <div class="oferta"><span class="off">-70%</span><img src="img/essencias.webp" width="360" height="360" alt="Umidificador mini egg com essências" loading="lazy" decoding="async" /><div><p>Umidificador mini egg + essências</p><s>R$ 99,97</s><strong>R$ 29,99</strong></div></div>
+      </div>
+      <p class="nota">Exemplos de ofertas anteriores. Os preços e a disponibilidade podem mudar.</p>
       <p class="kicker">Do útil ao “nem sabia que precisava”</p>
       <ul class="list">
         <li><span class="mark" aria-hidden="true">🏠</span><div><strong>Casa e cozinha</strong><small>Cama, banho, limpeza e organização</small></div></li>
@@ -351,20 +375,63 @@
         <li><span class="mark" aria-hidden="true">📱</span><div><strong>Eletrônicos</strong><small>Celular, fone e o que despencar</small></div></li>
         <li><span class="mark" aria-hidden="true">🎟️</span><div><strong>Cupom do dia</strong><small>Desconto que vale usar agora</small></div></li>
       </ul>
-      <p class="kicker">Ofertas que você encontra no grupo</p>
-      <div class="vitrine">
-        <div class="oferta"><span class="off">-80%</span><img src="https://cf.shopee.com.br/file/br-11134207-820lg-msfgivuanz7oc3" alt="Modelador de cachos e alisador" loading="lazy" /><div><p>Modelador de cachos e alisador 2 em 1</p><s>R$ 429,50</s><strong>R$ 85,90</strong></div></div>
-        <div class="oferta"><span class="off">-34%</span><img src="https://cf.shopee.com.br/file/br-11134207-820ll-mti5ca6mdn28b4" alt="Loção hidratante CeraVe" loading="lazy" /><div><p>Loção hidratante corporal CeraVe</p><s>R$ 133,61</s><strong>R$ 88,18</strong></div></div>
-        <div class="oferta"><span class="off">-56%</span><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-m7s2u8qjaf841d" alt="Lençol queen 400 fios" loading="lazy" /><div><p>Lençol Queen 400 fios micropercal</p><s>R$ 59,07</s><strong>R$ 25,99</strong></div></div>
-        <div class="oferta"><span class="off">-46%</span><img src="https://cf.shopee.com.br/file/br-11134207-820lt-msof4dg2rnyc07" alt="Óleo Elseve Extraordinário" loading="lazy" /><div><p>Óleo Elseve Extraordinário L'Oréal</p><s>R$ 60,93</s><strong>R$ 32,90</strong></div></div>
-        <div class="oferta"><span class="off">-50%</span><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-m1dy5xatz7ky10" alt="Smartwatch X10 Ultra" loading="lazy" /><div><p>Smartwatch X10 Ultra 45 mm</p><s>R$ 99,80</s><strong>R$ 49,90</strong></div></div>
-        <div class="oferta"><span class="off">-51%</span><img src="https://cf.shopee.com.br/file/br-11134207-820lg-mu3hyk13qarmf7" alt="Máscara capilar Ouro Marroquino" loading="lazy" /><div><p>Máscara capilar Ouro Marroquino 500 g</p><s>R$ 79,53</s><strong>R$ 38,97</strong></div></div>
-        <div class="oferta"><span class="off">-50%</span><img src="https://cf.shopee.com.br/file/br-11134207-820lh-mmkdb97vuih29b" alt="Kit 10 potes herméticos" loading="lazy" /><div><p>Kit 10 potes herméticos empilháveis</p><s>R$ 158,80</s><strong>R$ 79,40</strong></div></div>
-        <div class="oferta"><span class="off">-61%</span><img src="https://cf.shopee.com.br/file/br-11134207-7r98o-md3arzpv27sx24" alt="Mini umidificador aromatizador" loading="lazy" /><div><p>Mini umidificador e aromatizador USB</p><s>R$ 39,72</s><strong>R$ 15,49</strong></div></div>
-      </div>
-      <p class="nota">Preços consultados em 10/11 e que podem mudar.</p>
-      <a class="cta segundo" href="https://chat.whatsapp.com/LgC8GDYcdIe4YzLoIdmE6Q?mode=gi_t">Quero receber ofertas assim</a>
     </div>
   </main>
+  <div class="fixo" id="fixo" aria-hidden="true">
+    <a class="cta" data-cta="fixo-mobile" tabindex="-1" href="https://chat.whatsapp.com/LgC8GDYcdIe4YzLoIdmE6Q?mode=gi_t">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path fill="currentColor" d="M16 4.2A11.7 11.7 0 0 0 4.4 15.8c0 2.06.54 4.08 1.57 5.85L4.3 27.8l6.3-1.65a11.8 11.8 0 0 0 5.4 1.3A11.7 11.7 0 0 0 16 4.2zm6.72 16.55c-.28.78-1.62 1.48-2.24 1.58-.56.08-1.28.12-2.06-.12-.48-.16-1.08-.36-1.86-.7-3.28-1.42-5.42-4.72-5.58-4.94-.16-.22-1.34-1.78-1.34-3.4 0-1.6.84-2.4 1.14-2.72.28-.32.64-.4.86-.4h.62c.2 0 .46-.06.72.56.28.64.92 2.24 1 2.4.08.16.12.36.02.56-.1.22-.16.36-.32.56-.16.18-.32.42-.46.58-.16.16-.32.32-.14.62.18.32.78 1.3 1.68 2.1 1.16 1.04 2.14 1.36 2.46 1.52.32.16.5.12.68-.08.18-.22.76-.88.96-1.18.2-.3.4-.26.68-.16.28.1 1.76.82 2.06.98.3.14.5.22.56.36.08.12.08.76-.2 1.54z"/>
+      </svg>
+      Entrar no grupo grátis
+    </a>
+  </div>
+  <script>
+    (function () {
+      var fixo = document.getElementById("fixo");
+      var principal = document.getElementById("cta-principal");
+      var outros = document.querySelectorAll(".poster .cta");
+      var visiveis = new Set();
+      var principalAcima = false;
+      function atualizar() {
+        var mostrar = principalAcima && visiveis.size === 0;
+        fixo.classList.toggle("visivel", mostrar);
+        fixo.setAttribute("aria-hidden", mostrar ? "false" : "true");
+        fixo.querySelector("a").tabIndex = mostrar ? 0 : -1;
+      }
+      if ("IntersectionObserver" in window) {
+        var obs = new IntersectionObserver(function (entradas) {
+          entradas.forEach(function (e) {
+            if (e.isIntersecting) visiveis.add(e.target); else visiveis.delete(e.target);
+            if (e.target === principal) principalAcima = !e.isIntersecting && e.boundingClientRect.top < 0;
+          });
+          atualizar();
+        });
+        outros.forEach(function (b) { obs.observe(b); });
+      }
+
+      var utm = {};
+      try {
+        var params = new URLSearchParams(location.search);
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(function (k) {
+          var v = params.get(k) || sessionStorage.getItem(k);
+          if (v) { utm[k] = v; sessionStorage.setItem(k, v); }
+        });
+      } catch (e) {}
+
+      var leadEnviado = false;
+      document.querySelectorAll("a[data-cta]").forEach(function (link) {
+        link.addEventListener("click", function (ev) {
+          if (leadEnviado || typeof window.fbq !== "function") return;
+          leadEnviado = true;
+          var dados = Object.assign({ content_name: "grupo_whatsapp", cta_position: link.dataset.cta }, utm);
+          window.fbq("track", "Lead", dados, { eventID: "lead-" + Date.now() + "-" + Math.random().toString(36).slice(2, 8) });
+          if (link.target !== "_blank" && !ev.metaKey && !ev.ctrlKey) {
+            ev.preventDefault();
+            setTimeout(function () { location.href = link.href; }, 300);
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
