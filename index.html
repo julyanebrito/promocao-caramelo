@@ -418,9 +418,28 @@
         });
       } catch (e) {}
 
+      function registrar(evento) {
+        var corpo = JSON.stringify(Object.assign({ utm_source: utm.utm_source }, evento));
+        try {
+          if (navigator.sendBeacon && navigator.sendBeacon("/api/eventos", new Blob([corpo], { type: "text/plain" }))) return;
+          fetch("/api/eventos", { method: "POST", body: corpo, keepalive: true }).catch(function () {});
+        } catch (e) {}
+      }
+      try {
+        if (!sessionStorage.getItem("visita-registrada")) {
+          sessionStorage.setItem("visita-registrada", "1");
+          registrar({ tipo: "visita" });
+        }
+      } catch (e) { registrar({ tipo: "visita" }); }
+
       var leadEnviado = false;
+      var cliqueRegistrado = false;
       document.querySelectorAll("a[data-cta]").forEach(function (link) {
         link.addEventListener("click", function (ev) {
+          if (!cliqueRegistrado) {
+            cliqueRegistrado = true;
+            registrar({ tipo: "clique", cta: link.dataset.cta });
+          }
           if (leadEnviado || typeof window.fbq !== "function") return;
           leadEnviado = true;
           var dados = Object.assign({ content_name: "grupo_whatsapp", cta_position: link.dataset.cta }, utm);
